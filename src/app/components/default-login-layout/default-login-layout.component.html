@@ -1,15 +1,42 @@
-<main>
-  <section>
-    <img src="assets/svg/logo.svg" alt="" />
-    <h1></h1>
-    <button></button>
-    <div>
-      <span>or</span>
+<main class="flex flex-row items-center h-full justify-center">
+  <section class="flex flex-col items-center justify-center grow-[0.0,1] px-9">
+    <img src="assets/svg/logo.svg" />
+    <h2 class="font-bold font-[Poppins] text-[20px] mb-[45px] mt-[30px]">
+      {{ title }}
+    </h2>
+    <ng-content></ng-content>
+    <div class="flex flex-col items-center justify-center gap-[30px]">
+      <app-button
+        [text]="primaryBtnText"
+        [ngClass]="['text-white', 'font-bold']"
+        class="bg-[#7001FD] rounded-lg shadow-lg cursor-pointer shadow-purple-500/30"
+      ></app-button>
+      <div
+        class="text-xs text-gray-400 tracking-wide flex items-center gap-5 uppercase w-full"
+      >
+        <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+        <span>or</span>
+        <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+      </div>
+      <app-button
+        [text]="secondaryBtnText"
+        [ngClass]="[
+          'text-[#7001FD]',
+          'font-bold',
+          'border-[1px]',
+          'border-[#7001FD]',
+          'rounded-lg',
+          'cursor-pointer'
+        ]"
+      ></app-button>
     </div>
-    <button></button>
   </section>
-  <section>
-    <h2>You Should, MoveIt!</h2>
-    <img src="assets/svg/main-ilustration.svg" alt="" />
+  <section
+    class="flex flex-col items-center justify-center h-full grow bg-[#EEEEEE]"
+  >
+    <h1 class="font-semibold tracking-wide text-[34px] font-[Poppins]">
+      You Should, MoveIt!
+    </h1>
+    <img src="assets/svg/main-ilustration.svg" />
   </section>
 </main>
