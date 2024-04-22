@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
 type InputTypes = 'text' | 'email' | 'password' | 'name';
+
 @Component({
   selector: 'app-primary-input',
   templateUrl: './primary-input.component.html',

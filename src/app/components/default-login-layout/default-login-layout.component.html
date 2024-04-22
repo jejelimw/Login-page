@@ -5,13 +5,19 @@
       {{ title }}
     </h2>
     <ng-content></ng-content>
+
     <div class="flex flex-col items-center justify-center gap-[30px]">
       <app-button
         [text]="primaryBtnText"
-        (click)="submit()"
         [ngClass]="['text-white', 'font-bold']"
-        class="bg-primary rounded-lg shadow-lg cursor-pointer shadow-purple-500/30"
+        (click)="submit()"
         (click)="goToLoginPage()"
+        (click)="
+          areFieldsFilled()
+            ? submit()
+            : 'Please fill in the email and password field'
+        "
+        class="bg-primary rounded-lg shadow-lg cursor-pointer shadow-purple-500/30"
       >
       </app-button>
       <div
@@ -32,6 +38,11 @@
           'cursor-pointer'
         ]"
         (click)="goToSignInPage()"
+        (click)="
+          areFieldsFilled()
+            ? goToSignInPage()
+            : 'Please fill in the email and password field'
+        "
       ></app-button>
     </div>
   </section>

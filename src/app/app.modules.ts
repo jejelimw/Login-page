@@ -9,6 +9,7 @@ import { PrimaryInputComponent } from './components/primary-input/primary-input.
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { WindowRefService } from './window-ref.service';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { BrowserModule } from '@angular/platform-browser';
     PrimaryInputComponent,
     SignInComponent,
   ],
+  providers: [WindowRefService],
   exports: [
     ButtonComponent,
     DefaultLoginLayoutComponent,
