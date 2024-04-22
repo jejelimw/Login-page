@@ -1,1 +1,38 @@
-<app-default-login-layout></app-default-login-layout>
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="submit()"
+  class="flex flex-col w-full h-full gap-6 mb-[10px]"
+>
+  <app-default-login-layout
+    [title]="'Login into your account'"
+    [primaryBtnText]="'Login Now'"
+    [secondaryBtnText]="'Signup Now'"
+    [control]="loginForm"
+    (submit)="submit()"
+    class="h-full"
+  >
+    <app-primary-input
+      type="email"
+      label="Email Address"
+      placeholder="johndoe@gmail.com"
+      inputName="email"
+      [control]="email"
+      class="text-grey-pure text-[16px] w-full"
+    >
+      <img src="/assets/svg/email.png" />
+    </app-primary-input>
+    <app-primary-input
+      type="password"
+      label="Password"
+      inputName="password"
+      [control]="password"
+      class="text-grey-pure text-[16px] w-full"
+    >
+      <img src="/assets/svg/password.png" />
+    </app-primary-input>
+
+    <span class="text-[16px] text-[#1E2772] underline flex ml-auto mb-9"
+      >Forgot Password?</span
+    >
+  </app-default-login-layout>
+</form>

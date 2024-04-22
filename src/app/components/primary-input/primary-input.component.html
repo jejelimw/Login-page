@@ -1,0 +1,29 @@
+<div>
+  <label [for]="inputName" class="text-start">{{ label }}</label>
+  <div class="w-full rounded-lg flex flex-col">
+    <div
+      *ngIf="control && control.hasError('required') && control.touched"
+      class="text-red-pure"
+    >
+      This field is required*
+    </div>
+    <div class="flex">
+      <input
+        *ngIf="isFormControl"
+        [type]="type"
+        [value]="value"
+        [formControl]="control"
+        [placeholder]="placeholder"
+        class="rounded-lg bg-grey-light border-none text-[#555555] text-[16px] px-3 w-full h-[50px] py-0 rounded-r-none"
+        [ngClass]="{
+          'border-2 border-red-pure':
+            control && control.hasError('required') && control.touched
+        }"
+        (click)="logControlState()"
+      />
+      <div class="bg-primary p-4 w-[50px] h-[50px] rounded-lg rounded-l-none">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

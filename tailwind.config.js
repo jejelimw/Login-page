@@ -30,7 +30,7 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: "#f7ea57",
+          DEFAULT: "#7001FD",
         },
         blue: {
           pure: "#4DBAFF",
@@ -63,6 +63,11 @@ module.exports = {
           light: "#ffc8f9",
           medium: "#b537a8",
           dark: "#6b2064",
+        },
+        grey: {
+          pure: "#555555",
+          medium: "#EEEEEE",
+          light: "#F1F3F6",
         },
         "brand-gradient": {
           "blue-pure": "#4DBAFF",

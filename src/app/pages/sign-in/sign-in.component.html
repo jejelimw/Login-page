@@ -1,0 +1,58 @@
+<app-default-login-layout
+  [title]="'Sign in and start today!'"
+  [primaryBtnText]="'Login Now'"
+  [secondaryBtnText]="'Signup Now'"
+  (submit)="submit()"
+>
+  <form
+    [formGroup]="signInForm"
+    (ngSubmit)="submit()"
+    class="flex flex-col w-full gap-1 m-auto mb-2"
+  >
+    <app-primary-input
+      type="name"
+      label="Name"
+      placeholder="John Doe"
+      [control]="name"
+      inputName="name"
+      class="text-grey-pure text-[16px]"
+    >
+      <img src="/assets/svg/email.png" />
+    </app-primary-input>
+    <app-primary-input
+      type="email"
+      label="Email Address"
+      placeholder="johndoe@gmail.com"
+      [control]="email"
+      inputName="email"
+      class="text-grey-pure text-[16px]"
+    >
+      <img src="/assets/svg/email.png" />
+    </app-primary-input>
+    <app-primary-input
+      type="password"
+      label="Password"
+      placeholder="Enter your password"
+      [control]="password"
+      inputName="password"
+      class="text-grey-pure text-[16px]"
+    >
+      <img src="/assets/svg/password.png" />
+    </app-primary-input>
+    <app-primary-input
+      type="password"
+      placeholder="Repeat Password"
+      [control]="repeatPassword"
+      inputName="repeatPassword"
+      class="text-grey-pure text-[16px]"
+    >
+      <img src="/assets/svg/password.png" />
+    </app-primary-input>
+    <div *ngIf="signInForm.hasError('passwordMismatch')" class="text-red-500">
+      Password do not match
+    </div>
+  </form>
+  <span class="text-[16px] text-[#1E2772] underline flex ml-auto mb-4"
+    >Forgot Password?</span
+  >
+</app-default-login-layout>
