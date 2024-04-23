@@ -1,52 +1,34 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { WindowRefService } from '../../window-ref.service';
 
 @Component({
   selector: 'app-default-login-layout',
   templateUrl: './default-login-layout.component.html',
   styleUrl: './default-login-layout.component.scss',
 })
-export class DefaultLoginLayoutComponent implements OnInit {
+export class DefaultLoginLayoutComponent {
   @Input() title: string = '';
   @Input() primaryBtnText = '';
   @Input() secondaryBtnText = '';
   @Output('submit') onSubmit = new EventEmitter();
   @Input() control?: FormGroup | undefined;
+  @Input() formValid: boolean = false;
 
-  constructor(
-    private router: Router,
-    private windowRefService: WindowRefService
-  ) {}
-
-  ngOnInit() {}
-
-  areFieldsFilled(): boolean {
-    const email = this.control?.get('email')?.value;
-    const password = this.control?.get('password')?.value;
-    return email && password;
-  }
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
 
   goToLoginPage() {
     this.router.navigate(['/login']);
+    console.log(this.goToLoginPage);
   }
 
   goToSignInPage() {
     this.router.navigate(['/sign-in']);
+    console.log(this.goToSignInPage);
   }
 
   submit() {
-    if (this.areFieldsFilled()) {
-      this.goToLoginPage();
-    } else {
-      const nativeWindow = this.windowRefService.nativeWindow;
-      if (typeof window !== 'undefined' && window.alert) {
-        window.alert('Please fill in the email and password field');
-      } else {
-        console.error('Window or alert method not available');
-      }
-    }
+    this.goToLoginPage();
     this.onSubmit.emit();
   }
 }

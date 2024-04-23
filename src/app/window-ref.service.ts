@@ -13,5 +13,11 @@ export class WindowRefService {
     return getWindow();
   }
 
+  alert(message: string) {
+    if (typeof window !== 'undefined' && window.alert) {
+      window.alert(message);
+    }
+  }
+
   constructor() {}
 }

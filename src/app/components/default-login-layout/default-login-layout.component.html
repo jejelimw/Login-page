@@ -9,15 +9,12 @@
     <div class="flex flex-col items-center justify-center gap-[30px]">
       <app-button
         [text]="primaryBtnText"
-        [ngClass]="['text-white', 'font-bold']"
+        [disabled]="!formValid"
         (click)="submit()"
-        (click)="goToLoginPage()"
-        (click)="
-          areFieldsFilled()
-            ? submit()
-            : 'Please fill in the email and password field'
+        class="rounded-lg shadow-lg cursor-pointer"
+        [style]="
+          'disabled:text-primary disabled:border-[1px] disabled:border-primary enabled:text-white enabled:bg-primary'
         "
-        class="bg-primary rounded-lg shadow-lg cursor-pointer shadow-purple-500/30"
       >
       </app-button>
       <div
@@ -31,18 +28,13 @@
         [text]="secondaryBtnText"
         [ngClass]="[
           'text-primary',
-          'font-bold',
           'border-[1px]',
           'border-primary',
           'rounded-lg',
           'cursor-pointer'
         ]"
+        (click)="submit()"
         (click)="goToSignInPage()"
-        (click)="
-          areFieldsFilled()
-            ? goToSignInPage()
-            : 'Please fill in the email and password field'
-        "
       ></app-button>
     </div>
   </section>

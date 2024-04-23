@@ -25,6 +25,7 @@ export class PrimaryInputComponent implements ControlValueAccessor, OnInit {
   @Input() label: string = '';
   @Input() inputName: string = '';
   @Input() control: FormControl = new FormControl();
+  @Input() disabled: boolean = false;
 
   ngOnInit() {
     this.control.valueChanges.subscribe(() => {

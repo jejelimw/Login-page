@@ -1,5 +1,4 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
@@ -10,6 +9,7 @@ export class ButtonComponent {
   @Input() width: string = 'w-120';
   @Input() height: string = 'h-13';
   @Input() style: string = '';
+  @Input() disabled: boolean = false;
 
   @Output() clickEvent = new EventEmitter<void>();
 

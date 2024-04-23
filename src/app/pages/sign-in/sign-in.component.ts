@@ -3,8 +3,8 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  Form,
   FormBuilder,
+  AbstractControlOptions,
 } from '@angular/forms';
 
 @Component({
@@ -27,7 +27,7 @@ export class SignInComponent implements OnInit {
         password: [null, [Validators.required, Validators.minLength(6)]],
         repeatPassword: [null, [Validators.required]],
       },
-      { validator: this.passwordMatchValidator }
+      { validator: this.passwordMatchValidator } as AbstractControlOptions
     );
   }
 
@@ -57,8 +57,9 @@ export class SignInComponent implements OnInit {
   }
 
   submit() {
+    this.name.value;
     this.email.value;
     this.password.value;
-    console.log(this.signInForm.value);
+    this.repeatPassword.value;
   }
 }

@@ -10,17 +10,21 @@ export class LoginComponent implements OnInit {
   @Input() control?: FormGroup | undefined;
 
   loginForm!: FormGroup;
+  formValid: boolean = false;
 
   constructor() {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
+    });
+
+    this.loginForm.valueChanges.subscribe(() => {
+      this.formValid = this.loginForm.valid;
     });
   }
 
@@ -31,18 +35,8 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.loginForm.controls['password'] as FormControl;
   }
-  submit() {
-    if (this.control?.invalid) {
-      const emailControl = this.control.get('email');
-      const passwordControl = this.control.get('password');
 
-      if (emailControl?.invalid) {
-        alert('Please fill in the email field.');
-      }
-      if (passwordControl?.invalid) {
-        alert('Please fill in the password field.');
-      }
-      return;
-    }
+  submit() {
+    console.log(this.loginForm.value);
   }
 }
