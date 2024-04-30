@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
@@ -12,6 +13,8 @@ export class ButtonComponent {
   @Input() disabled: boolean = false;
 
   @Output() clickEvent = new EventEmitter<void>();
+
+  constructor(public router: Router) {}
 
   onClick() {
     this.clickEvent.emit();

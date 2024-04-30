@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,11 +11,16 @@ export class DefaultLoginLayoutComponent {
   @Input() title: string = '';
   @Input() primaryBtnText = '';
   @Input() secondaryBtnText = '';
-  @Output('submit') onSubmit = new EventEmitter();
+  @Input() others = '';
   @Input() control?: FormGroup | undefined;
-  @Input() formValid: boolean = false;
+  @Input() loginValid: boolean = false;
+  @Input() signValid: boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  @Output('submit') onSubmit = new EventEmitter();
+
+  loginError = false;
+
+  constructor(public router: Router) {}
 
   goToLoginPage() {
     this.router.navigate(['/login']);
@@ -27,8 +32,19 @@ export class DefaultLoginLayoutComponent {
     console.log(this.goToSignInPage);
   }
 
+  simulatorLoginError() {
+    this.loginError = true;
+  }
+
+  login() {
+    if (this.loginError) {
+      this.simulatorLoginError;
+    }
+  }
+
   submit() {
     this.goToLoginPage();
+    this.goToSignInPage();
     this.onSubmit.emit();
   }
 }

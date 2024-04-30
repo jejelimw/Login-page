@@ -6,6 +6,7 @@ import {
   FormBuilder,
   AbstractControlOptions,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,8 +17,9 @@ export class SignInComponent implements OnInit {
   @Input() control?: FormControl | undefined;
 
   signInForm!: FormGroup;
+  signValid: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public router: Router) {}
 
   ngOnInit() {
     this.signInForm = this.fb.group(
@@ -29,6 +31,10 @@ export class SignInComponent implements OnInit {
       },
       { validator: this.passwordMatchValidator } as AbstractControlOptions
     );
+
+    this.signInForm.valueChanges.subscribe(() => {
+      this.signValid = this.signInForm.valid;
+    });
   }
 
   get name() {
@@ -57,9 +63,6 @@ export class SignInComponent implements OnInit {
   }
 
   submit() {
-    this.name.value;
-    this.email.value;
-    this.password.value;
-    this.repeatPassword.value;
+    console.log(this.signInForm.value);
   }
 }

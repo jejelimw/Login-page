@@ -1,16 +1,16 @@
 <form
   [formGroup]="loginForm"
-  (ngSubmit)="submit()"
   class="flex flex-col w-full h-full gap-6 mb-[10px]"
 >
   <app-default-login-layout
     [title]="'Login into your account'"
     [primaryBtnText]="'Login Now'"
     [secondaryBtnText]="'Signup Now'"
+    [others]="'or login with'"
     [control]="loginForm"
     (submit)="submit()"
     class="h-full"
-    [formValid]="formValid"
+    [loginValid]="loginValid"
   >
     <app-primary-input
       type="email"
@@ -31,9 +31,17 @@
     >
       <img src="/assets/svg/password.png" />
     </app-primary-input>
-
-    <span class="text-[16px] text-[#1E2772] underline flex ml-auto mb-9"
-      >Forgot Password?</span
-    >
+    <div class="flex gap-56 mt-2 mb-4 text-[16px] text-[#1E2772] underline">
+      <div class="flex items-center gap-2">
+        <input
+          id="default-checkbox"
+          type="checkbox"
+          value=""
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <label>Remember me!</label>
+      </div>
+      <span (click)="submit()">Forgot Password?</span>
+    </div>
   </app-default-login-layout>
 </form>

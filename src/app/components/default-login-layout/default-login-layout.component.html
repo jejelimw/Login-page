@@ -1,47 +1,115 @@
-<main class="flex flex-row items-center h-full w-full justify-center">
-  <section class="flex flex-col items-center justify-center grow-[0.0,1] px-9">
-    <img src="assets/svg/logo.svg" />
-    <h2 class="font-bold font-[Poppins] text-[20px] mb-[45px] mt-[30px]">
-      {{ title }}
-    </h2>
-    <ng-content></ng-content>
-
-    <div class="flex flex-col items-center justify-center gap-[30px]">
-      <app-button
-        [text]="primaryBtnText"
-        [disabled]="!formValid"
-        (click)="submit()"
-        class="rounded-lg shadow-lg cursor-pointer"
-        [style]="
-          'disabled:text-primary disabled:border-[1px] disabled:border-primary enabled:text-white enabled:bg-primary'
-        "
-      >
-      </app-button>
+<main
+  class="flex flex-row items-center h-full w-full justify-center overflow-hidden"
+>
+  <section class="overflow-auto relative h-full">
+    <section class="flex flex-col items-center px-10 grow-[0.0,1] py-10">
       <div
-        class="text-xs text-gray-400 tracking-wide flex items-center gap-5 uppercase w-full"
+        *ngIf="loginError"
+        class="bg-red-500 text-white p-10 mb-4 w-full text-center font-[Poppins]"
       >
-        <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
-        <span>or</span>
-        <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+        Woops, something is wrong, try again later!
       </div>
-      <app-button
-        [text]="secondaryBtnText"
-        [ngClass]="[
-          'text-primary',
-          'border-[1px]',
-          'border-primary',
-          'rounded-lg',
-          'cursor-pointer'
-        ]"
-        (click)="submit()"
-        (click)="goToSignInPage()"
-      ></app-button>
-    </div>
+      <img src="assets/svg/logo.svg" />
+      <h2 zclass="font-bold font-[Poppins] text-[20px] mb-[30px] mt-[30px]">
+        {{ title }}
+      </h2>
+      <ng-content></ng-content>
+      <!-- Página Login -->
+      <div class="flex flex-col items-center justify-center gap-[30px]">
+        <div
+          *ngIf="router.url === '/login'"
+          class="flex flex-col items-center justify-center gap-[30px]"
+        ></div>
+        <app-button
+          *ngIf="router.url === '/login'"
+          [text]="primaryBtnText"
+          [disabled]="!(router.url !== '/login') && !loginValid"
+          (click)="submit(); goToLoginPage()"
+          class="rounded-lg shadow-lg cursor-pointer"
+          [style]="
+            'disabled:text-primary disabled:border-[1px] disabled:border-primary enabled:text-white enabled:bg-primary'
+          "
+        >
+        </app-button>
+        <div
+          *ngIf="router.url === '/login'"
+          class="text-xs text-gray-400 tracking-wide flex items-center gap-5 uppercase w-full"
+        >
+          <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+          <span class="w-[20rem]">{{ others }}</span>
+          <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+        </div>
+        <div class="flex gap-4 w-full">
+          <div
+            *ngIf="router.url === '/login'"
+            class="flex w-full items-center justify-center rounded-lg border-[1px] border-yellow-400"
+          >
+            <img src="assets/svg/google.icon.png" class="w-6 flex" />
+            <button (click)="submit()" class="w-20 py-4 text-red-600">
+              Google
+            </button>
+          </div>
+          <div
+            *ngIf="router.url === '/login'"
+            class="flex w-full items-center justify-center rounded-lg border-[1px] border-blue-400"
+          >
+            <img src="assets/svg/facebook.png" class="w-6 flex" />
+            <button (click)="submit()" class="w-24 py-4 text-blue-600">
+              Facebook
+            </button>
+          </div>
+        </div>
+        <!-- Página Sign up -->
+      </div>
+      <div
+        *ngIf="router.url === '/sign-in'"
+        class="flex flex-col items-center justify-center gap-[30px]"
+      >
+        <app-button
+          *ngIf="router.url.toString() !== '/login'"
+          [text]="secondaryBtnText"
+          [disabled]="!(router.url !== '/sign-in') && !signValid"
+          (click)="submit(); goToSignInPage()"
+          [style]="
+            'disabled:text-primary disabled:border-[1px] disabled:border-primary enabled:text-white enabled:bg-primary'
+          "
+        >
+          ></app-button
+        >
+        <div
+          class="text-xs text-gray-400 tracking-wide flex items-center gap-5 uppercase w-full"
+        >
+          <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+          <span class="w-[20rem]">{{ others }}</span>
+          <div class="w-full h-[1px] bg-[#C2C2C2]"></div>
+        </div>
+        <div class="flex gap-4 w-full">
+          <div
+            *ngIf="router.url === '/sign-in'"
+            class="flex w-full items-center justify-center rounded-lg border-[1px] border-yellow-400"
+          >
+            <img src="assets/svg/google.icon.png" class="w-6 flex" />
+            <button (click)="submit()" class="w-20 py-4 text-red-600">
+              Google
+            </button>
+          </div>
+          <div
+            *ngIf="router.url === '/sign-in'"
+            class="flex w-full items-center justify-center rounded-lg border-[1px] border-blue-400"
+          >
+            <img src="assets/svg/facebook.png" class="w-6 flex" />
+            <button (click)="submit()" class="w-24 py-4 text-blue-600">
+              Facebook
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </section>
   <section
-    class="flex flex-col items-center justify-center h-full grow bg-[#EEEEEE]"
+    class="flex flex-col items-center justify-center grow h-full bg-[#EEEEEE]"
   >
-    <h1 class="font-bold tracking-wide text-lg font-[Poppins]">
+    <h1 class="font-bold tracking-wide text-lg font-[Poppins] text-[#7001FD]">
       You Should, MoveIt!
     </h1>
     <img src="/assets/svg/main-ilustration.svg" />

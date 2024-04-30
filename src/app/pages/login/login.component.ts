@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,9 @@ export class LoginComponent implements OnInit {
   @Input() control?: FormGroup | undefined;
 
   loginForm!: FormGroup;
-  formValid: boolean = false;
+  loginValid: boolean = false;
 
-  constructor() {}
+  constructor(public router: Router) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.loginForm.valueChanges.subscribe(() => {
-      this.formValid = this.loginForm.valid;
+      this.loginValid = this.loginForm.valid;
     });
   }
 
