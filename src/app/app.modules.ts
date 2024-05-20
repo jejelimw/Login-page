@@ -10,6 +10,9 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { WindowRefService } from './window-ref.service';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -18,21 +21,18 @@ import { WindowRefService } from './window-ref.service';
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserModule,
+    MatSlideToggleModule,
+    MatIconModule,
   ],
+
   declarations: [
     DefaultLoginLayoutComponent,
     LoginComponent,
     ButtonComponent,
     PrimaryInputComponent,
     SignInComponent,
+    ForgotPasswordComponent,
   ],
   providers: [WindowRefService],
-  exports: [
-    ButtonComponent,
-    DefaultLoginLayoutComponent,
-    LoginComponent,
-    PrimaryInputComponent,
-    SignInComponent,
-  ],
 })
 export class AppModule {}
