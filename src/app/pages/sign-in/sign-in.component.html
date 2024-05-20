@@ -1,15 +1,10 @@
-<app-default-login-layout
-  [title]="'Sign in and start today!'"
-  [secondaryBtnText]="'Sign Up'"
-  [others]="'or login with'"
-  (submit)="submit()"
-  [control]="signInForm"
-  [signValid]="signValid"
->
-  <form
-    [formGroup]="signInForm"
-    (ngSubmit)="submit()"
-    class="flex flex-col w-full h-full gap-1 m-auto mb-12"
+<form [formGroup]="signInForm" class="flex flex-col">
+  <app-default-login-layout
+    [title]="'Sign in and start today!'"
+    [secondaryBtnText]="'Sign Up'"
+    (submit)="submit()"
+    [control]="signInForm"
+    [signValid]="signValid"
   >
     <app-primary-input
       type="name"
@@ -17,7 +12,7 @@
       placeholder="John Doe"
       [control]="name"
       inputName="name"
-      class="text-grey-pure text-[16px] w-full"
+      class="text-grey-pure text-[16px] w-full mb-6 mt-10"
     >
       <img src="/assets/svg/email.png" />
     </app-primary-input>
@@ -27,7 +22,7 @@
       placeholder="johndoe@gmail.com"
       [control]="email"
       inputName="email"
-      class="text-grey-pure text-[16px] w-full"
+      class="text-grey-pure text-[16px] w-full mb-6"
     >
       <img src="/assets/svg/email.png" />
     </app-primary-input>
@@ -37,7 +32,7 @@
       placeholder="Enter your password"
       [control]="password"
       inputName="password"
-      class="text-grey-pure text-[16px] w-full mb-4"
+      class="text-grey-pure text-[16px] w-full mb-6"
     >
       <img src="/assets/svg/password.png" />
     </app-primary-input>
@@ -47,12 +42,12 @@
       placeholder="Repeat Password"
       [control]="repeatPassword"
       inputName="repeatPassword"
-      class="text-grey-pure text-[16px] w-full"
+      class="text-grey-pure text-[16px] w-full mb-6"
     >
       <img src="/assets/svg/password.png" />
     </app-primary-input>
-  </form>
-  <div *ngIf="signInForm.hasError('passwordMismatch')" class="text-red-500">
-    Password do not match
-  </div>
-</app-default-login-layout>
+    <div *ngIf="signInForm.hasError('passwordMismatch')" class="text-red-500">
+      Password do not match
+    </div>
+  </app-default-login-layout>
+</form>
