@@ -31,6 +31,7 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: "#7001FD",
+          light: "#d3baf6",
         },
         blue: {
           pure: "#4DBAFF",
@@ -289,7 +290,6 @@ module.exports = {
           background: `linear-gradient(black, black) padding-box,
                        linear-gradient(to right, rgba(77, 186, 255, 1), rgba(92, 255, 115, 1), rgba(247, 234, 87, 1), rgba(255, 88, 72, 1), rgba(255, 77, 237, 1)) border-box`,
           borderRadius: "99em",
-          border: "1px border-primary",
         },
       };
       addUtilities(newUtilities);
