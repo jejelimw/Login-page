@@ -1,4 +1,4 @@
-<form [formGroup]="signInForm" class="flex flex-col">
+<form [formGroup]="signInForm" class="h-full w-full">
   <app-default-login-layout
     [title]="'Sign in and start today!'"
     [secondaryBtnText]="'Sign Up'"
@@ -6,46 +6,52 @@
     [control]="signInForm"
     [signValid]="signValid"
   >
-    <app-primary-input
-      type="name"
-      label="Name"
-      placeholder="John Doe"
-      [control]="name"
-      inputName="name"
-      class="text-grey-pure text-[16px] w-full mb-6 mt-10"
-    >
-      <img src="/assets/svg/email.png" />
-    </app-primary-input>
-    <app-primary-input
-      type="email"
-      label="Email Address"
-      placeholder="johndoe@gmail.com"
-      [control]="email"
-      inputName="email"
-      class="text-grey-pure text-[16px] w-full mb-6"
-    >
-      <img src="/assets/svg/email.png" />
-    </app-primary-input>
-    <app-primary-input
-      type="password"
-      label="Password"
-      placeholder="Enter your password"
-      [control]="password"
-      inputName="password"
-      class="text-grey-pure text-[16px] w-full mb-6"
-    >
-      <img src="/assets/svg/password.png" />
-    </app-primary-input>
-    <app-primary-input
-      type="password"
-      label="Repeat password"
-      placeholder="Repeat Password"
-      [control]="repeatPassword"
-      inputName="repeatPassword"
-      class="text-grey-pure text-[16px] w-full mb-6"
-    >
-      <img src="/assets/svg/password.png" />
-    </app-primary-input>
+    <div class="grid grid-cols-2 gap-4">
+      <app-primary-input
+        type="name"
+        label="Name"
+        placeholder="John Doe"
+        [control]="name"
+        inputName="name"
+        class="text-grey-pure text-[16px] w-full mb-6"
+        [ngClass]="{
+          'mt-0': router.url === '/sign-in',
+          'mt-10': router.url === '/login'
+        }"
+      >
+        <img src="/assets/svg/email.png" />
+      </app-primary-input>
+      <app-primary-input
+        type="email"
+        label="Email Address"
+        placeholder="johndoe@gmail.com"
+        [control]="email"
+        inputName="email"
+        class="text-grey-pure text-[16px] w-full mb-6"
+      >
+        <img src="/assets/svg/email.png" />
+      </app-primary-input>
+      <app-primary-input
+        type="password"
+        label="Password"
+        placeholder="Enter your password"
+        [control]="password"
+        inputName="password"
+        class="text-grey-pure text-[16px] w-full mb-6"
+      >
+        <img src="/assets/svg/password.png" />
+      </app-primary-input>
+      <app-primary-input
+        type="password"
+        label="Repeat password"
+        placeholder="Repeat Password"
+        [control]="repeatPassword"
+        inputName="repeatPassword"
+        class="text-grey-pure text-[16px] w-full mb-6"
+      >
+        <img src="/assets/svg/password.png" />
+      </app-primary-input>
+    </div>
     <div *ngIf="signInForm.hasError('passwordMismatch')" class="text-red-500">
       Password do not match
     </div>

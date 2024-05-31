@@ -16,8 +16,7 @@
         [placeholder]="placeholder"
         class="rounded-lg bg-grey-light border-none text-[#555555] text-[16px] px-3 w-100 h-[50px] py-0 rounded-r-none"
         [ngClass]="{
-          'border-2 border-red-pure':
-            control && control.hasError('required') && control.touched
+          'w-44': router.url === '/sign-in'
         }"
         (click)="logControlState()"
       />

@@ -37,6 +37,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls['password'] as FormControl;
   }
 
+  userMgmt() {
+    this.router.navigate(['/userMgmt']);
+    console.log('resete a senha', this.userMgmt);
+  }
+
   submit() {
     console.log(this.loginForm.value);
   }

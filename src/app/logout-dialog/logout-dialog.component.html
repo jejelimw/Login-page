@@ -1,0 +1,11 @@
+<section class="fixed inset-0 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-md w-96">
+    <h2 mat-dialog-title>Logout</h2>
+    <mat-dialog-content>
+      <p>Logged out of {{ data.email }}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button (click)="onClose()">Close</button>
+    </mat-dialog-actions>
+  </div>
+</section>

@@ -4,6 +4,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 type InputTypes = 'text' | 'email' | 'password' | 'name';
 
@@ -20,6 +21,8 @@ type InputTypes = 'text' | 'email' | 'password' | 'name';
   ],
 })
 export class PrimaryInputComponent implements ControlValueAccessor, OnInit {
+  constructor(public router: Router) {}
+
   @Input() type: InputTypes = 'text';
   @Input() placeholder: string = '';
   @Input() label: string = '';

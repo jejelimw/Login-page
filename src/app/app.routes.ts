@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: SignInComponent,
   },
   {
-    path: 'password',
+    path: 'userMgmt',
     component: ForgotPasswordComponent,
   },
 ];

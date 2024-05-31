@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../auth-service';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../../logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-default-login-layout',
@@ -19,12 +20,16 @@ export class DefaultLoginLayoutComponent {
 
   @Output('submit') onSubmit = new EventEmitter();
 
+  email = '' as string;
+  password = '' as string;
   loginError = false;
-
-  user: SocialUser | undefined;
   loggedIn: boolean = false;
 
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    public auth: AuthService,
+    public dialog: MatDialog
+  ) {}
 
   goToLoginPage() {
     this.router.navigate(['/login']);
@@ -35,20 +40,50 @@ export class DefaultLoginLayoutComponent {
     this.router.navigate(['/sign-in']);
     console.log(this.goToSignInPage);
   }
+  
 
   simulatorLoginError() {
     this.loginError = true;
   }
 
-  login() {
+  logError() {
     if (this.loginError) {
       this.simulatorLoginError;
     }
   }
 
+  googleSignin() {
+    console.log(this.googleSignin);
+  }
+
+  facebookSignin() {
+    console.log(this.facebookSignin);
+  }
+
+  signOut() {
+    this.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+    });
+  }
+
+  openLogoutDialog() {
+    const dialogRef = this.dialog.open(LogoutDialogComponent, {
+      data: { email: this.auth.user ? this.auth.user.email : '' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'signOut') {
+        this.signOut();
+        console.log(this.signOut);
+      }
+    });
+  }
+
   submit() {
     this.goToLoginPage();
     this.goToSignInPage();
+    this.googleSignin();
+    this.signOut();
     this.onSubmit.emit();
   }
 }
